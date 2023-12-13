@@ -1,0 +1,24 @@
+{
+  "name": "@carlosrpj/aws-lambda-toolkit",
+  "version": "1.0.5",
+  "description": "A CLI toolkit to manage an AWS Lambda and the dependent resources.",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "aws-lambda-tookit": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "command": "node index.js"
+  },
+  "keywords": [],
+  "author": "Carlos Roberto",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^11.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlos-rpj/aws-lambda-toolkit.git"
+  }
+}

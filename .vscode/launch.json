@@ -1,0 +1,36 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "List Stacks",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "${workspaceFolder}/index.js",
+        "list-stacks"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "List Resources",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "${workspaceFolder}/index.js",
+        "list-resources",
+        "boleto-dev",
+        "--only-logical-id"
+      ]
+    }
+  ]
+}
