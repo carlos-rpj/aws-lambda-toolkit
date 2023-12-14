@@ -11,11 +11,6 @@ import DeleteBucketService from '../services/delete-bucket.service'
 import DeleteStackService from '../services/delete-stack.service'
 import JsonFileHelper from '../helpers/json-file.helper'
 
-// import DeleteStackAction from './src/actions/delete-stack.action.js'
-// import DeleteBucketAction from './src/actions/delete-bucket.action.js'
-
-// import JsonFileHelper from './src/helpers/json-file.helper.js'
-
 const packageJson = JsonFileHelper.read('./package.json')
 const program = new Command()
 
