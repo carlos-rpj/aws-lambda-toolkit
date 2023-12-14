@@ -7,7 +7,7 @@
     "aws-lambda-toolkit": "./dist/cli.mjs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch",
     "command": "tsx src/index.ts",
     "watch": "tsx watch src/index.ts",
     "build": "tsup",
@@ -25,8 +25,11 @@
     "url": "git+https://github.com/carlos-rpj/aws-lambda-toolkit.git"
   },
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.11",
     "@types/node": "^20.10.4",
     "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
     "tsup": "^8.0.1",
     "tsx": "^4.6.2",
     "typescript": "^5.3.3"

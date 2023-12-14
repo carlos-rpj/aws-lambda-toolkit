@@ -8,6 +8,7 @@
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "baseUrl": ".",
     "paths": {
       "@package.json": [
         "./package.json"

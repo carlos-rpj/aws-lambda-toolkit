@@ -45,7 +45,7 @@ class AwsApiCli implements AwsApi {
 
     const result = await this.cli.exec(`aws cloudformation describe-stack-resources --stack-name ${stackName}`, params)
     const json = result.toJson();
-    const data = json?.StackSummaries || json;
+    const data = json?.StackResources || json;
 
     return data;
   }
