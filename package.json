@@ -1,6 +1,6 @@
 {
   "name": "@carlosrpj/aws-lambda-toolkit",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A CLI toolkit to manage an AWS Lambda and the dependent resources.",
   "main": "index.js",
   "type": "module",
