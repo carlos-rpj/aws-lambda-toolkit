@@ -28,7 +28,7 @@
       "runtimeArgs": [
         "${workspaceFolder}/index.js",
         "list-resources",
-        "boleto-dev",
+        "resource-name",
         "--only-logical-id"
       ]
     }
