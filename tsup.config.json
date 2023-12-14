@@ -1,0 +1,8 @@
+{
+  "entry": [
+    "src/cli/cli.ts"
+  ],
+  "format": "esm",
+  "sourcemap": true,
+  "clean": true
+}
