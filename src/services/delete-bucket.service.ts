@@ -1,5 +1,5 @@
-import AwsApi from "../interfaces/aws-api.interface";
-import Logger from "../interfaces/logger.interface";
+import AwsApi from "@interfaces/aws-api.interface";
+import Logger from "@interfaces/logger.interface";
 
 class DeleteBucketService {
   constructor(

@@ -1,4 +1,4 @@
-import Logger from "../interfaces/logger.interface";
+import Logger from "@interfaces/logger.interface";
 
 class ConsoleLogger implements Logger {
   info(message: string, ...params: any) {

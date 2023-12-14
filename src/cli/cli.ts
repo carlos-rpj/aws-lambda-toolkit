@@ -1,17 +1,16 @@
 #!/usr/bin/env node
 import { Command } from 'commander'
 
-import ConsoleLogger from '../implementations/console-logger'
-import AwsApiCli from '../implementations/aws-api-cli'
+import ConsoleLogger from '@implementations/console-logger'
+import AwsApiCli from '@implementations/aws-api-cli'
 
-import CLIService from '../services/cli.service'
-import ListStacksService from '../services/list-stacks.service'
-import ListResourcesService from '../services/list-resources.service'
-import DeleteBucketService from '../services/delete-bucket.service'
-import DeleteStackService from '../services/delete-stack.service'
-import JsonFileHelper from '../helpers/json-file.helper'
+import CLIService from '@services/cli.service'
+import ListStacksService from '@services/list-stacks.service'
+import ListResourcesService from '@services/list-resources.service'
+import DeleteBucketService from '@services/delete-bucket.service'
+import DeleteStackService from '@services/delete-stack.service'
+import packageJson  from '@package.json'
 
-const packageJson = JsonFileHelper.read('./package.json')
 const program = new Command()
 
 const consoleLogger = new ConsoleLogger()

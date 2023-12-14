@@ -1,7 +1,7 @@
 
-import AwsApi from '../interfaces/aws-api.interface';
-import Logger from '../interfaces/logger.interface';
-import CLIService from '../services/cli.service';
+import AwsApi from '@interfaces/aws-api.interface';
+import Logger from '@interfaces/logger.interface';
+import CLIService from '@services/cli.service';
 
 class AwsApiCli implements AwsApi {
   constructor(

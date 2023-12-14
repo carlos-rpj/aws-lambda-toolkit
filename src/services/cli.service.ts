@@ -1,5 +1,5 @@
 import { exec } from 'node:child_process'
-import Logger from '../interfaces/logger.interface';
+import Logger from '@interfaces/logger.interface';
 
 class ExecResult<T> {
   constructor(private data: string) {}
