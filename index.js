@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import path from 'path'
 import { Command } from 'commander'
 
 import ListResourcesAction from './src/actions/list-resources.action.js'
@@ -8,7 +9,7 @@ import ListStacksAction from './src/actions/list-stacks.action.js'
 
 import JsonFileHelper from './src/helpers/json-file.helper.js'
 
-const packageJson = JsonFileHelper.read(__dirname + '/package.json')
+const packageJson = JsonFileHelper.read(path.resolve('./package.json'))
 const program = new Command()
 
 program
