@@ -4,7 +4,7 @@
   "description": "A CLI toolkit to manage an AWS Lambda and the dependent resources.",
   "main": "src/index.ts",
   "bin": {
-    "aws-lambda-tookit": "./dist/cli.mjs"
+    "aws-lambda-toolkit": "./dist/cli.mjs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
