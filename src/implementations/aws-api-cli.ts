@@ -1,8 +1,9 @@
 
+import AwsApi from '../interfaces/aws-api.interface';
 import Logger from '../interfaces/logger.interface';
-import CLIService from './cli.service';
+import CLIService from '../services/cli.service';
 
-class AWSService {
+class AwsApiCli implements AwsApi {
   constructor(
     private cli: CLIService,
     private logger: Logger
@@ -15,7 +16,7 @@ class AWSService {
     }
   }
 
-  async listStacks(options: any): Promise<any[]> {
+  async listStacks(options: any) {
     const params: any = this.defaultParams(options);
 
     params.query = options.query;
@@ -35,7 +36,7 @@ class AWSService {
     return data;
   }
 
-  async listResources(stackName: string, options: any): Promise<any[]> {
+  async listResources(stackName: string, options: any) {
     const params: any = this.defaultParams(options);
     params.query = options.query;
 
@@ -64,4 +65,4 @@ class AWSService {
   }
 }
 
-export default AWSService
+export default AwsApiCli

@@ -1,9 +1,9 @@
+import AwsApi from "../interfaces/aws-api.interface";
 import Logger from "../interfaces/logger.interface";
-import AWSService from "./aws.service";
 
 class ListStacksService {
   constructor(
-    private aws: AWSService,
+    private aws: AwsApi,
     private logger: Logger
   ) {}
 

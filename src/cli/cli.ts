@@ -2,8 +2,8 @@
 import { Command } from 'commander'
 
 import ConsoleLogger from '../implementations/console-logger'
+import AwsApiCli from '../implementations/aws-api-cli'
 
-import AWSService from '../services/aws.service'
 import CLIService from '../services/cli.service'
 import ListStacksService from '../services/list-stacks.service'
 import ListResourcesService from '../services/list-resources.service'
@@ -21,12 +21,12 @@ const program = new Command()
 
 const consoleLogger = new ConsoleLogger()
 const cliService = new CLIService(consoleLogger)
-const awsService = new AWSService(cliService, consoleLogger)
+const awsApiCli = new AwsApiCli(cliService, consoleLogger)
 
-const listStacksService = new ListStacksService(awsService, consoleLogger)
-const listResourcesService = new ListResourcesService(awsService, consoleLogger)
-const deleteBucketService = new DeleteBucketService(awsService, consoleLogger)
-const deleteStackService = new DeleteStackService(awsService, consoleLogger)
+const listStacksService = new ListStacksService(awsApiCli, consoleLogger)
+const listResourcesService = new ListResourcesService(awsApiCli, consoleLogger)
+const deleteBucketService = new DeleteBucketService(awsApiCli, consoleLogger)
+const deleteStackService = new DeleteStackService(awsApiCli, consoleLogger)
 
 program
   .name('aws-lambda-toolkit')

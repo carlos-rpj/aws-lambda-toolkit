@@ -1,11 +1,11 @@
+import AwsApi from "../interfaces/aws-api.interface";
 import Logger from "../interfaces/logger.interface";
-import AWSService from "./aws.service";
 
 class DeleteStackService {
   constructor(
-    private aws: AWSService,
+    private aws: AwsApi,
     private logger: Logger,
-  ){}
+  ) {}
 
   async delete(stackName: string, options: any) {
     const resources = await this.aws.listResources(stackName, options);

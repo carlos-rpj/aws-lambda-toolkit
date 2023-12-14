@@ -1,11 +1,11 @@
+import AwsApi from "../interfaces/aws-api.interface";
 import Logger from "../interfaces/logger.interface";
-import AWSService from "./aws.service";
 
 class DeleteBucketService {
   constructor(
-    private aws: AWSService,
+    private aws: AwsApi,
     private logger: Logger
-  ){}
+  ) {}
 
   async delete(bucketName:string, options: any) {
     const result = await this.aws.deleteBucket(bucketName, options);

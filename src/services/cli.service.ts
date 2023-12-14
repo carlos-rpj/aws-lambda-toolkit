@@ -2,8 +2,7 @@ import { exec } from 'node:child_process'
 import Logger from '../interfaces/logger.interface';
 
 class ExecResult<T> {
-  constructor(private data: string) {
-  }
+  constructor(private data: string) {}
 
   toJson(): T {
     return JSON.parse(this.data)
@@ -19,7 +18,7 @@ class CLIService {
     private logger: Logger
   ) {}
 
-  async exec<T = any>(command:string, options: any): Promise<ExecResult<T>> {
+  async exec<T = any>(command: string, options: any): Promise<ExecResult<T>> {
     const commandTree = [command];
 
     for (const key in options) {
