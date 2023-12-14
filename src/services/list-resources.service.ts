@@ -1,10 +1,10 @@
-import AwsApi from "@interfaces/aws-api.interface";
-import Logger from "@interfaces/logger.interface";
+import type IAwsApi from "@interfaces/aws-api.interface";
+import type ILogger from "@interfaces/logger.interface";
 
 class ListResourcesService {
   constructor(
-    private aws: AwsApi,
-    private logger: Logger
+    private aws: IAwsApi,
+    private logger: ILogger
   ) {}
 
   async list(stackName: string, options: any) {

@@ -1,13 +1,13 @@
 
-import AwsApi from '@interfaces/aws-api.interface';
-import Logger from '@interfaces/logger.interface';
-import CLIService from '@services/cli.service';
+import type IAwsApi from '@interfaces/aws-api.interface';
+import type ILogger from '@interfaces/logger.interface';
+import type IProcessExec from '@interfaces/proccess-exec.interface';
 
-class AwsApiCli implements AwsApi {
+class AwsApiCli implements IAwsApi {
   constructor(
-    private cli: CLIService,
-    private logger: Logger
-  ) { }
+    private cli: IProcessExec,
+    private logger: ILogger
+  ) {}
 
   private defaultParams(options: Record<'profile'|'region', string>) {
     return {

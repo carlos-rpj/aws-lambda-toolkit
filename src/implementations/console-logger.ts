@@ -1,7 +1,7 @@
 import colorizeJson from "json-colorizer";
-import Logger from "@interfaces/logger.interface";
+import type ILogger from "@interfaces/logger.interface";
 
-class ConsoleLogger implements Logger {
+class ConsoleLogger implements ILogger {
   info(message: string, ...params: any) {
     if (params?.length) console.info(message, ...params)
     else console.info(message)

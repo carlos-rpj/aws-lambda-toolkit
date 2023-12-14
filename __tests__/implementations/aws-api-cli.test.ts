@@ -1,13 +1,14 @@
-import CLIService from "@services/cli.service";
+import type IProcessExec from "@interfaces/proccess-exec.interface";
+import type ILogger from "@interfaces/logger.interface";
+
 import AwsApiCli from "@implementations/aws-api-cli";
-import Logger from "@interfaces/logger.interface";
 
 const defaultParams = {
   profile: 'default',
   region: 'us-east-1'
 }
 
-const mockLogger: Logger = {
+const mockLogger: ILogger = {
   info: jest.fn(),
   debug: jest.fn(),
   json: jest.fn()
@@ -18,11 +19,11 @@ const mockCliResult = {
   toString: jest.fn()
 }
 
-const mockCli = {
+const mockProcessExec: IProcessExec = {
   exec: jest.fn().mockResolvedValue(mockCliResult)
 }
 
-const awsApiCli = new AwsApiCli(mockCli as unknown as CLIService, mockLogger)
+const awsApiCli = new AwsApiCli(mockProcessExec, mockLogger)
 
 describe('list stacks', () => {
   const mockStack = {
@@ -46,7 +47,7 @@ describe('list stacks', () => {
 
     expect(stacks.length).toBe(1)
     expect(stacks[0]).toEqual(mockStack)
-    expect(mockCli.exec).toHaveBeenCalledWith(
+    expect(mockProcessExec.exec).toHaveBeenCalledWith(
       "aws cloudformation list-stacks",
       {
         profile: "default",
@@ -67,7 +68,7 @@ describe('list stacks', () => {
 
     expect(stacks.length).toBe(1)
     expect(stacks[0]).toEqual(mockStack.StackName)
-    expect(mockCli.exec).toHaveBeenCalledWith(
+    expect(mockProcessExec.exec).toHaveBeenCalledWith(
       "aws cloudformation list-stacks",
       {
         profile: "default",
@@ -91,7 +92,7 @@ describe('list stacks', () => {
 
     expect(stacks.length).toBe(1)
     expect(stacks[0]).toEqual(mockStack)
-    expect(mockCli.exec).toHaveBeenCalledWith(
+    expect(mockProcessExec.exec).toHaveBeenCalledWith(
       "aws cloudformation list-stacks",
       {
         profile: "default",
@@ -138,7 +139,7 @@ describe('list resources', () => {
 
     expect(resources.length).toBe(1)
     expect(resources[0]).toEqual(mockResource)
-    expect(mockCli.exec).toHaveBeenCalledWith(
+    expect(mockProcessExec.exec).toHaveBeenCalledWith(
       "aws cloudformation describe-stack-resources --stack-name mock-stack",
       {
         profile: "default",
@@ -168,7 +169,7 @@ describe('list resources', () => {
 
     expect(resources.length).toBe(1)
     expect(resources[0]).toEqual(mockResource.PhysicalResourceId)
-    expect(mockCli.exec).toHaveBeenCalledWith(
+    expect(mockProcessExec.exec).toHaveBeenCalledWith(
       "aws cloudformation describe-stack-resources --stack-name mock-stack",
       {
         profile: "default",
@@ -190,7 +191,7 @@ describe('list resources', () => {
 
     expect(resources.length).toBe(1)
     expect(resources[0]).toEqual(mockResource.LogicalResourceId)
-    expect(mockCli.exec).toHaveBeenCalledWith(
+    expect(mockProcessExec.exec).toHaveBeenCalledWith(
       "aws cloudformation describe-stack-resources --stack-name mock-stack",
       {
         profile: "default",
@@ -205,7 +206,7 @@ describe('delete bucket', () => {
   test('should delete the bucket', async () => {
     await awsApiCli.deleteBucket('mock-bucket', defaultParams)
 
-    expect(mockCli.exec).toHaveBeenCalledWith(
+    expect(mockProcessExec.exec).toHaveBeenCalledWith(
       "aws s3 rm s3://mock-bucket --recursive",
       {
         profile: "default",
@@ -219,7 +220,7 @@ describe('delete stack', () => {
   test('should delete the stack', async () => {
     await awsApiCli.deleteStack('mock-stack', defaultParams)
 
-    expect(mockCli.exec).toHaveBeenCalledWith(
+    expect(mockProcessExec.exec).toHaveBeenCalledWith(
       "aws cloudformation delete-stack --stack-name mock-stack",
       {
         profile: "default",

@@ -1,7 +1,10 @@
 import { exec } from 'node:child_process'
-import Logger from '@interfaces/logger.interface';
 
-class ExecResult<T> {
+import type ILogger from '@interfaces/logger.interface';
+import type IProcessExec from '@interfaces/proccess-exec.interface';
+import type { IExecResult } from '@interfaces/proccess-exec.interface';
+
+export class ExecResult<T> implements IExecResult<T> {
   constructor(private data: string) {}
 
   toJson(): T {
@@ -13,9 +16,9 @@ class ExecResult<T> {
   }
 }
 
-class CLIService {
+export default class ProcessExec implements IProcessExec {
   constructor(
-    private logger: Logger
+    private logger: ILogger
   ) {}
 
   async exec<T = any>(command: string, options: any): Promise<ExecResult<T>> {
@@ -38,5 +41,3 @@ class CLIService {
     })
   }
 }
-
-export default CLIService

@@ -1,4 +1,4 @@
-interface Logger {
+interface ILogger {
   info(...params: any): void;
   info(message: string, ...params: any): void;
 
@@ -8,4 +8,4 @@ interface Logger {
   json(data: any): void;
 }
 
-export default Logger
+export default ILogger

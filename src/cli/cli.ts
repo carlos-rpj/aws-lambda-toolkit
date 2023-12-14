@@ -2,20 +2,20 @@
 import { Command } from 'commander'
 
 import ConsoleLogger from '@implementations/console-logger'
+import ProcessExec from '@implementations/proccess-exec'
 import AwsApiCli from '@implementations/aws-api-cli'
 
-import CLIService from '@services/cli.service'
 import ListStacksService from '@services/list-stacks.service'
 import ListResourcesService from '@services/list-resources.service'
 import DeleteBucketService from '@services/delete-bucket.service'
 import DeleteStackService from '@services/delete-stack.service'
-import packageJson  from '@package.json'
+import { description, version }  from '@package.json'
 
 const program = new Command()
 
 const consoleLogger = new ConsoleLogger()
-const cliService = new CLIService(consoleLogger)
-const awsApiCli = new AwsApiCli(cliService, consoleLogger)
+const processExec = new ProcessExec(consoleLogger)
+const awsApiCli = new AwsApiCli(processExec, consoleLogger)
 
 const listStacksService = new ListStacksService(awsApiCli, consoleLogger)
 const listResourcesService = new ListResourcesService(awsApiCli, consoleLogger)
@@ -24,8 +24,8 @@ const deleteStackService = new DeleteStackService(awsApiCli, consoleLogger)
 
 program
   .name('aws-lambda-toolkit')
-  .description(packageJson.description)
-  .version(packageJson.version, '-v, --version')
+  .description(description)
+  .version(version, '-v, --version')
 
 program
   .command('list-stacks')
