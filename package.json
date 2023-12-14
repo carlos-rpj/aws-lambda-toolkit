@@ -7,7 +7,9 @@
     "aws-lambda-toolkit": "./dist/cli.mjs"
   },
   "scripts": {
-    "test": "jest --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "command": "tsx src/index.ts",
     "watch": "tsx watch src/index.ts",
     "build": "tsup",
