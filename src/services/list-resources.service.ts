@@ -9,7 +9,7 @@ class ListResourcesService {
 
   async list(stackName: string, options: any) {
     const resources = await this.aws.listResources(stackName, options);
-    this.logger.info(resources);
+    this.logger.json(resources);
   }
 }
 

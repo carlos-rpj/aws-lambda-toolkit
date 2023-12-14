@@ -1,3 +1,4 @@
+import colorizeJson from "json-colorizer";
 import Logger from "@interfaces/logger.interface";
 
 class ConsoleLogger implements Logger {
@@ -10,6 +11,10 @@ class ConsoleLogger implements Logger {
     if (!process.env.DEBUG || !process.env.DEBUG.includes(scope)) return;
     if (params?.length) console.debug(`[${scope}]`, message, ...params)
     else console.debug(`[${scope}]`, message)
+  }
+
+  json(data: any) {
+    console.log(colorizeJson(data, { pretty: true }))
   }
 }
 
