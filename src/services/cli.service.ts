@@ -1,12 +1,11 @@
 import { exec } from 'node:child_process'
-import LoggerHelper from './logger.helper.js'
+import Logger from '../interfaces/logger.interface';
 
-class ExecResult {
-  constructor(data) {
-    this.data = data
+class ExecResult<T> {
+  constructor(private data: string) {
   }
 
-  toJson() {
+  toJson(): T {
     return JSON.parse(this.data)
   }
 
@@ -15,12 +14,12 @@ class ExecResult {
   }
 }
 
-class CLIExecAsyncHelper {
-  /**
-   * @param {string} command Command to be executed
-   * @returns {Promise<ExecResult>} Object of a command result
-   */
-  static async exec(command, options) {
+class CLIService {
+  constructor(
+    private logger: Logger
+  ) {}
+
+  async exec<T = any>(command:string, options: any): Promise<ExecResult<T>> {
     const commandTree = [command];
 
     for (const key in options) {
@@ -29,16 +28,16 @@ class CLIExecAsyncHelper {
 
     return new Promise((resolve, reject) => {
       const commandLine = commandTree.join(' ');
-      LoggerHelper.debug('command-exec', 'exec >', commandLine) 
+      this.logger.debug('command-exec', 'exec >', commandLine) 
 
       exec(commandLine, (error, stdout, stderr) => {
         if (error) return reject(error);
 
-        LoggerHelper.debug('command-exec', 'result >', stdout)      
+        this.logger.debug('command-exec', 'result >', stdout)      
         resolve(new ExecResult(stdout))
       })
     })
   }
 }
 
-export default CLIExecAsyncHelper
+export default CLIService

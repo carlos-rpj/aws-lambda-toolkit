@@ -1,15 +1,32 @@
 #!/usr/bin/env node
 import { Command } from 'commander'
 
-import ListResourcesAction from './src/actions/list-resources.action.js'
-import DeleteStackAction from './src/actions/delete-stack.action.js'
-import DeleteBucketAction from './src/actions/delete-bucket.action.js'
-import ListStacksAction from './src/actions/list-stacks.action.js'
+import ConsoleLogger from '../implementations/console-logger'
 
-import JsonFileHelper from './src/helpers/json-file.helper.js'
+import AWSService from '../services/aws.service'
+import CLIService from '../services/cli.service'
+import ListStacksService from '../services/list-stacks.service'
+import ListResourcesService from '../services/list-resources.service'
+import DeleteBucketService from '../services/delete-bucket.service'
+import DeleteStackService from '../services/delete-stack.service'
+import JsonFileHelper from '../helpers/json-file.helper'
+
+// import DeleteStackAction from './src/actions/delete-stack.action.js'
+// import DeleteBucketAction from './src/actions/delete-bucket.action.js'
+
+// import JsonFileHelper from './src/helpers/json-file.helper.js'
 
 const packageJson = JsonFileHelper.read('./package.json')
 const program = new Command()
+
+const consoleLogger = new ConsoleLogger()
+const cliService = new CLIService(consoleLogger)
+const awsService = new AWSService(cliService, consoleLogger)
+
+const listStacksService = new ListStacksService(awsService, consoleLogger)
+const listResourcesService = new ListResourcesService(awsService, consoleLogger)
+const deleteBucketService = new DeleteBucketService(awsService, consoleLogger)
+const deleteStackService = new DeleteStackService(awsService, consoleLogger)
 
 program
   .name('aws-lambda-toolkit')
@@ -25,7 +42,7 @@ program
   .option('--only-name', 'List only the stacks names')
   .option('--profile <string>', 'The name of AWS Profile')
   .option('--region <string>', 'The region on AWS')
-  .action(ListStacksAction.list)
+  .action(listStacksService.list.bind(listStacksService))
 
 program
   .command('list-resources')
@@ -36,7 +53,7 @@ program
   .option('--query <string>', 'A JMESPath query to use in filtering the response data')
   .option('--profile <string>', 'The name of AWS Profile')
   .option('--region <string>', 'The region on AWS')
-  .action(ListResourcesAction.list)
+  .action(listResourcesService.list.bind(listResourcesService))
 
 program
   .command('delete-stack')
@@ -44,7 +61,7 @@ program
   .argument('<string>', 'Name of the lambda stack')
   .option('--profile <string>', 'The name of AWS Profile')
   .option('--region <string>', 'The region on AWS')
-  .action(DeleteStackAction.delete)
+  .action(deleteStackService.delete.bind(deleteStackService))
 
 program
   .command('delete-bucket')
@@ -52,6 +69,6 @@ program
   .argument('<string>', 'Name of the S3 Bucket')
   .option('--profile <string>', 'The name of AWS Profile')
   .option('--region <string>', 'The region on AWS')
-  .action(DeleteBucketAction.delete)
+  .action(deleteBucketService.delete.bind(deleteBucketService))
 
 program.parse();
