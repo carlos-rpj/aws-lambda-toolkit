@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import { Command } from 'commander'
 
-import ConsoleLogger from '@implementations/console-logger'
+// import ConsoleLogger from '@implementations/console-logger'
+import DebugLogger from '@implementations/debug-logger'
 import ProcessExec from '@implementations/proccess-exec'
 import AwsApiCli from '@implementations/aws-api-cli'
 
@@ -13,14 +14,15 @@ import { description, version }  from '@package.json'
 
 const program = new Command()
 
-const consoleLogger = new ConsoleLogger()
-const processExec = new ProcessExec(consoleLogger)
-const awsApiCli = new AwsApiCli(processExec, consoleLogger)
+// const logger = new ConsoleLogger()
+const logger = new DebugLogger()
+const processExec = new ProcessExec(logger)
+const awsApiCli = new AwsApiCli(processExec, logger)
 
-const listStacksService = new ListStacksService(awsApiCli, consoleLogger)
-const listResourcesService = new ListResourcesService(awsApiCli, consoleLogger)
-const deleteBucketService = new DeleteBucketService(awsApiCli, consoleLogger)
-const deleteStackService = new DeleteStackService(awsApiCli, consoleLogger)
+const listStacksService = new ListStacksService(awsApiCli, logger)
+const listResourcesService = new ListResourcesService(awsApiCli, logger)
+const deleteBucketService = new DeleteBucketService(awsApiCli, logger)
+const deleteStackService = new DeleteStackService(awsApiCli, logger)
 
 program
   .name('aws-lambda-toolkit')
