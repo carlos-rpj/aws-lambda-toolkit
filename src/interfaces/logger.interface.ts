@@ -1,11 +1,11 @@
 interface ILogger {
-  info(...params: any): void;
-  info(message: string, ...params: any): void;
+	info(...params: unknown[]): void;
+	info(message: string, ...params: unknown[]): void;
 
-  debug(scope: string, ...params: any): void;
-  debug(scope: string, message: string, ...params: any): void;
+	debug(scope: string, ...params: unknown[]): void;
+	debug(scope: string, message: string, ...params: unknown[]): void;
 
-  json(data: any): void;
+	json(data: unknown): void;
 }
 
-export default ILogger
+export default ILogger;

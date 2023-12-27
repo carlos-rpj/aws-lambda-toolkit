@@ -1,8 +1,8 @@
 export default interface IProcessExec {
-  exec<T = any>(command: string, options: any): Promise<IExecResult<T>>
+	exec<T = unknown>(command: string, options: unknown): Promise<IExecResult<T>>;
 }
 
 export interface IExecResult<T> {
-  toJson(): T;
-  toString(): string;
+	toJson(): T;
+	toString(): string;
 }

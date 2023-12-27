@@ -14,7 +14,8 @@
     "command": "tsx src/index.ts",
     "watch": "tsx watch src/index.ts",
     "build": "tsup",
-    "prepublishOnly": "tsup"
+    "prepublishOnly": "tsup",
+    "lint": "biome check --apply src"
   },
   "keywords": [],
   "author": "Carlos Roberto",
@@ -30,6 +31,7 @@
     "url": "git+https://github.com/carlos-rpj/aws-lambda-toolkit.git"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.4.1",
     "@jest/globals": "^29.7.0",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.10.4",
