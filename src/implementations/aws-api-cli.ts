@@ -1,3 +1,5 @@
+import type ILogger from "@interfaces/logger.interface";
+import type IProcessExec from "@interfaces/proccess-exec.interface";
 import IAwsApi, {
 	DefaultParams,
 	DeleteBucketOptions,
@@ -7,8 +9,6 @@ import IAwsApi, {
 	StackResource,
 	StackSummary,
 } from "@interfaces/aws-api.interface";
-import type ILogger from "@interfaces/logger.interface";
-import type IProcessExec from "@interfaces/proccess-exec.interface";
 
 type ListStackResourcesWithoutQuery = {
 	StackResources: StackResource[];
